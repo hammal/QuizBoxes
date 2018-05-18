@@ -1,0 +1,3 @@
+[submodule "RandomBox/Adafruit_Trellis_Library"]
+	path = RandomBox/Adafruit_Trellis_Library
+	url = https://github.com/adafruit/Adafruit_Trellis_Library
