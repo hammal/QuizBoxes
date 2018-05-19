@@ -88,6 +88,10 @@ void generateRandomPattern(){
   }
 }
 
+void writePattern(){
+  
+}
+
 void loop() {
   delay(30); // 30ms delay is required, dont remove me!
   // Generate random pattern
