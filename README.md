@@ -17,3 +17,6 @@ the combination lock of the box.
 
 
 ## [BombBox](./timerBox/README.md)
+
+
+## [BinaryBox](./BinaryBox/README.md)
