@@ -13,4 +13,7 @@ the combination lock of the box.
 
 
 
-## [RandomBox](./RandomBox/README.md)
+## [RandomBox](./randomBox/README.md)
+
+
+## [BombBox](./timerBox/README.md)
