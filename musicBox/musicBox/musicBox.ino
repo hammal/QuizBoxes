@@ -104,28 +104,46 @@ const byte Cols= 3; //number of columns on the keypad i,e, 3
 
 //we will definne the key map as on the key pad:
 
-int keymap[Rows][Cols]=
-{
-{1, 2, 3},
-{4, 5, 6},
-{7, 8, 9},
-{10, 11, 12}
+
+char hexaKeys[Rows][Cols] = {
+  {'1', '2', '3'},
+  {'4', '5', '6'},
+  {'7', '8', '9'},
+  {'*', '0', '#'}
 };
 
+int keyToInt(char key){
+  int var;
+  switch(key) {
+    case '*':
+      var = 10;
+      break;
+    case '#':
+      var = 12;
+      break;
+    case '0':
+      var = 11;
+      break;
+    default:
+      var = int(key - '0');
+      break;    
+  }
+  return var;
+}
 
 int Notes[] = {0,
-  NOTE_C2,
-  NOTE_D2,
-  NOTE_E2,
-  NOTE_F2,
-  NOTE_G2,
-  NOTE_A2,
-  NOTE_B2,
   NOTE_C3,
   NOTE_D3,
   NOTE_E3,
   NOTE_F3,
-  NOTE_G3
+  NOTE_G3,
+  NOTE_A3,
+  NOTE_B3,
+  NOTE_C4,
+  NOTE_D4,
+  NOTE_E4,
+  NOTE_F4,
+  NOTE_G4
 };
   
   
@@ -139,7 +157,7 @@ byte cPins[Cols]= {9, 6, 7}; //Columns 0 to 2
 
 // command for library forkeypad
 //initializes an instance of the Keypad class
-Keypad kpd= Keypad(makeKeymap(keymap), rPins, cPins, Rows, Cols);
+Keypad kpd= Keypad(makeKeymap(hexaKeys), rPins, cPins, Rows, Cols);
 
 void setup()
 {
@@ -154,10 +172,13 @@ void loop()
      int keypressed = kpd.getKey();
      if (keypressed != NO_KEY)
      {  
-          Serial.println("KeyPressed!");
+          Serial.print("KeyPressed! ");
+          Serial.print("number ");
+          Serial.print(keyToInt(keypressed));
+          Serial.print(" ;");
           Serial.println(keypressed);
           int noteDuration = 200;
-          tone(BUZZPIN, Notes[keypressed], noteDuration);
+          tone(BUZZPIN, Notes[keyToInt(keypressed)], noteDuration);
 
           // to distinguish the notes, set a minimum time between them.
           // the note's duration + 30% seems to work well:
